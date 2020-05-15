@@ -1,5 +1,4 @@
 const mongoose=require('mongoose');
-//const mongoclient=require('mongodb').MongoClient;
 const config=require('config');
 const db=config.get('mongoURI');
 
