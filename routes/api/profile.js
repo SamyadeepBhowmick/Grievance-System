@@ -48,9 +48,6 @@ router.post(
             profileFields.skills=skills.split(',').map(skill=>skill.trim());
         }
 
-
-        res.send('hello');
-
         try{
             let profile= await Profile.findOne({user: req.user.id});
   
@@ -73,6 +70,17 @@ router.post(
 
 
     });
+
+//To get all profiles
+router.get('/',async (req,res)=>{
+    try {
+        const profiles=await Profile.find().populate('users',['name','avatar']);
+        res.json(profiles);
+    } catch (err) {
+        console.error(err.message);
+        res.status(500).send('server error');
+    }
+});
 
 
 
