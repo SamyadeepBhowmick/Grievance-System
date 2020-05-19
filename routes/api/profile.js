@@ -9,7 +9,7 @@ const User=require('../../models/User');
 
 router.get('/me',auth, async(req,res)=>{
     try{
-        const profile=await Profile.findOne({user: req.user.id}).populate('users',['name','avatar']);
+        const profile=await Profile.findOne({user: req.user.id}).populate('user',['name','avatar']);
         if(!profile){
             return res.status(400).json({ msg: 'There is no profile for this user' });
         }
@@ -74,7 +74,7 @@ router.post(
 //To get all profiles
 router.get('/',async (req,res)=>{
     try {
-        const profiles=await Profile.find().populate('users',['name','avatar']);
+        const profiles=await Profile.find().populate('user',['name','avatar']);
         res.json(profiles);
     } catch (err) {
         console.error(err.message);
@@ -85,7 +85,7 @@ router.get('/',async (req,res)=>{
 //To get profile by user_id
 router.get('/user/:user_id',async (req,res)=>{
     try {
-        const profile=await Profile.findOne({user: req.params.user_id}).populate('users',['name','avatar']);
+        const profile=await Profile.findOne({user: req.params.user_id}).populate('user',['name','avatar']);
         if(!profile){
             return res.status(400).json({ msg: 'There is no profile for this user' });
         }
