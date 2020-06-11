@@ -26,7 +26,7 @@ const EditProfile = ({profile: {profile,loading},createProfile,getCurrentProfile
             skills: loading || !profile.skills ? '' : profile.skills.join(','),
             bio: loading || !profile.bio ? '' : profile.bio
         });
-    },[loading]);
+    },[loading,getCurrentProfile]);
 
     const {company,website,location,status,skills,bio}=formData;
 
