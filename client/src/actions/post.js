@@ -124,8 +124,13 @@ export const getPost = id => async dispatch => {
 
 // Add comment
 export const addComment = (postId, formData) => async dispatch => {
+    const config={
+        headers:{
+          'Content-Type': 'application/json'
+        }
+    }
   try {
-    const res = await axios.post(`/api/posts/comment/${postId}`, formData);
+    const res = await axios.post(`/api/posts/comment/${postId}`, formData,config);
 
     dispatch({
       type: ADD_COMMENT,
